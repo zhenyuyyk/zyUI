@@ -1,0 +1,31 @@
+{
+  "hash": "9470fe22",
+  "browserHash": "a9fcdfe2",
+  "optimized": {
+    "vue": {
+      "file": "D:/myProject/zyAdmin/docs/.vuepress/.cache/vue.js",
+      "src": "D:/myProject/zyAdmin/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "file": "D:/myProject/zyAdmin/docs/.vuepress/.cache/vue-router.js",
+      "src": "D:/myProject/zyAdmin/node_modules/vue-router/dist/vue-router.esm-bundler.js",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "file": "D:/myProject/zyAdmin/docs/.vuepress/.cache/@vueuse_core.js",
+      "src": "D:/myProject/zyAdmin/node_modules/@vueuse/core/index.mjs",
+      "needsInterop": false
+    },
+    "nprogress": {
+      "file": "D:/myProject/zyAdmin/docs/.vuepress/.cache/nprogress.js",
+      "src": "D:/myProject/zyAdmin/node_modules/nprogress/nprogress.js",
+      "needsInterop": true
+    },
+    "@vuepress/shared": {
+      "file": "D:/myProject/zyAdmin/docs/.vuepress/.cache/@vuepress_shared.js",
+      "src": "D:/myProject/zyAdmin/node_modules/@vuepress/shared/lib/esm/index.js",
+      "needsInterop": false
+    }
+  }
+}
