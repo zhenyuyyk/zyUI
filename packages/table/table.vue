@@ -28,8 +28,10 @@ let obj = reactive({
 });
 
 let baseTables = ref(null);
+let page = ref(null);
 onMounted(() => {
   obj.table = baseTables.value.elTables;
+  obj.page = page.value;
 });
 
 defineExpose(obj);
@@ -44,13 +46,19 @@ const customHeader = _.cloneDeep(props.column).filter((row) => {
   row.prop = row.prop + "Header";
   return row;
 });
+const emit = defineEmits(['pageChange']);
+const pageChange=(pages)=>{
+  emit('pageChange', pages);
+}
 </script>
 
 <template>
   <div class="zy_table">
     <div class="zy_table_top">
-      <slot name="btns"></slot>
-      <Page :pages="props.pageConfig"/>
+      <div>
+        <slot name="btns"></slot>
+      </div>
+      <Page ref="page" :pages="props.pageConfig" @pageChange="pageChange"/>
     </div>
     <BaseTable ref="baseTables" :tableConfig="props.tableConfig" :column="props.column" :data="props.data">
       <template v-for="item in customHeader" v-slot:[item.prop]>

@@ -35,6 +35,15 @@ let pageConfig = {
 };
 let tableConfig = {
   border: true,
+  rowClassName:({row, rowIndex})=>{
+    if (rowIndex === 0) {
+      return 'warning-row'
+    } else if (rowIndex === 2) {
+      return 'success-row'
+    }
+    return ''
+  },
+  height:250,
   // cellClick: (row, column, cell, event) => {
   //   console.log(row, column, cell, event);
   // }
@@ -43,15 +52,24 @@ let tableData = [
   {
     data: "123",
     name: "456",
-    address: "789"
+    address: "789",
+    aaa: "123",
+    bbb: "bbb",
+    ccc: "cccc"
   }, {
     data: "123",
     name: "456",
-    address: "789"
+    address: "789",
+    aaa: "123",
+    bbb: "bbb",
+    ccc: "cccc"
   }, {
     data: "123",
     name: "456",
-    address: "789"
+    address: "789",
+    aaa: "123",
+    bbb: "bbb",
+    ccc: "cccc"
   }
 ];
 let tableColumn = [
@@ -70,19 +88,19 @@ let tableColumn = [
   },
   {
     label: "自定义列1",
-    prop: "address",
+    prop: "aaa",
     custom: true,
     customHeader: true
   },
   {
     label: "自定义列2",
-    prop: "address",
+    prop: "bbb",
     custom: true,
     customHeader: false
   },
   {
-    label: "自定义列3",
-    prop: "address",
+    label: "ccc",
+    prop: "ccc",
   },
   {
     label: "操作",
@@ -99,30 +117,62 @@ let tableColumn = [
     ]
   },
 ];
+let tableData2 = [
+  {
+    aaa: "123",
+    bbb: "bbb",
+    ccc: "cccc",
+    ddd: "ddd",
+    eee: "eee",
+    fff: "fff"
+  }, {
+    aaa: "123",
+    bbb: "bbb",
+    ccc: "cccc",
+    ddd: "ddd",
+    eee: "eee",
+    fff: "fff"
+  }, {
+    aaa: "123",
+    bbb: "bbb",
+    ccc: "cccc",
+    ddd: "ddd",
+    eee: "eee",
+    fff: "fff"
+  }
+];
 let tableColumn2 = [
   {
     label: "Data",
-    prop: "data"
+    prop: "aaa"
   },
   {
-    label: "Name",
-    prop: "name",
-    children:[
+    label: "Delivery Info",
+    prop: "bbb",
+    children: [
       {
-        label: "Data",
-        prop: "data"
+        label: "Name",
+        prop: "ccc"
       },
       {
-        label: "Address",
-        prop: "address",
-        children:[
+        label: "Address Info",
+        prop: "ddd",
+        children: [
           {
             label: "city",
-            prop: "city"
+            prop: "eee"
           },
           {
             label: "state",
-            prop: "state"
+            prop: "fff"
+          },
+          {
+            label: "address",
+            prop: "ggg"
+          },
+          {
+            label: "zip",
+            prop: "hhh"
           },
         ]
       },
@@ -138,6 +188,12 @@ console.log("app", multipleTableRef.value);
 const lineClick = () => {
   console.log("lineClick");
 };
+const pageChange = (pages) => {
+  console.log(pages);
+};
+const goOne = () => {
+  multipleTableRef.value.page.changePageNo(1);
+};
 </script>
 
 <template>
@@ -145,24 +201,32 @@ const lineClick = () => {
     <p>{{ checked2 }}</p>
     <zy-checkout-group v-model="checked1" :config="config"/>
     <zy-checkout v-model="checked2" :config="config2" @change="checkoutChange"/>
-    <el-button @click="allXuan">点击全选</el-button>
+    <el-button @click="allXuan">点击取消全选</el-button>
     <zy-table ref="multipleTableRef" :pageConfig="pageConfig" :tableConfig="tableConfig" :column="tableColumn"
-              :data="tableData">
-      <template v-slot:btns>
-        头部按钮插槽
+              :data="tableData" @pageChange="pageChange">
+      <template #btns>
+        头部按钮插槽 <span style="color: red" @click="goOne">点击回到第一页并重新请求</span>
       </template>
-      <template v-slot:addressHeader>
+      <template #aaaHeader>
         addressHeader
       </template>
-      <template v-slot:address>
-        <p @click="lineClick">addressLine</p>
+      <template #aaa="data">
+        <p @click="lineClick">addressLine{{data}}</p>
+      </template>
+      <template #bbb>
+        <p @click="lineClick">bbb</p>
       </template>
     </zy-table>
     <h2>多级表头:</h2>
-    <zy-table :column="tableColumn2" :data="tableData" />
+    <zy-table :pageConfig="pageConfig" :column="tableColumn2" :data="tableData2"/>
   </ElConfigProvider>
 </template>
 
-<style scoped>
-
+<style>
+.el-table .warning-row {
+  --el-table-tr-bg-color: var(--el-color-warning-lighter);
+}
+.el-table .success-row {
+  --el-table-tr-bg-color: var(--el-color-success-lighter);
+}
 </style>

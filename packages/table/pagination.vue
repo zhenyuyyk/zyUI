@@ -1,77 +1,52 @@
 <script setup>
+import {pageDefault} from "/utils/default.js";
+import {reactive, computed, ref} from "vue";
+
 const props = defineProps({
-  isNeedPage: {
-    type: Boolean,
-    default: true
-  },
-  background: {
-    type: Boolean,
-    default: false
-  },
-  pageSize: {
-    type: Number,
-    default: 10
-  },
-  defaultPageSize: {
-    type: Number,
-    default: null
-  },
-  total: {
-    type: Number,
-    default: 0
-  },
-  pagerCount: {
-    type: Number,
-    default: 7
-  },
-  currentPage: {
-    type: Number,
-    default: 1
-  },
-  defaultCurrentPage: {
-    type: Number,
-    default: null
-  },
-  layout: {
-    type: String,
-    default: 'prev, pager, next, jumper, ->, total'
-  },
-  pageSizes: {
-    type: Array,
-    default: [15, 30, 50, 100]
-  },
-  popperClass: {
-    type: String,
-    default: null
-  },
-  prevText: {
-    type: String,
-    default: null
-  },
-  nexText: {
-    type: String,
-    default: null
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  hideOnSinglePage: {
-    type: Boolean,
-    default: null
+  pages: {
+    type: Object,
+    default: {}
   }
+});
+const emit = defineEmits(['pageChange']);
+const pageConfig = reactive({
+  currentPage: props.pages.pageNo || 1,
+  ...props.pages,
+  ...pageDefault
+});
+const emitPaceChange = () => {
+  emit('pageChange', {
+    pageNo: pageConfig.currentPage,
+    pageSize: pageConfig.pageSize,
+  });
+};
+const sizeChange = (val) => {
+  pageConfig.pageSize = val;
+  let {pageSize, currentPage, total} = pageConfig;
+  if (pageSize * (currentPage - 1) <= total) {
+    emitPaceChange();
+  }
+};
+const currentChange = (val) => {
+  pageConfig.currentPage = val;
+  emitPaceChange();
+};
+const changePageNo = (val) => {
+  pageConfig.currentPage = val;
+  pageConfig.pageNo = val;
+  emitPaceChange();
+};
+defineExpose({
+  changePageNo
 });
 </script>
 
 <template>
   <el-pagination
-      v-if="props.isNeedPage"
-      v-model:currentPage="props.currentPage"
-      v-model:pageSize="props.pageSize"
-      :page-sizes="props.pageSizes"
-      :page-size="props.pageSize"
-      :layout="props.layout"
-      :total="props.total"
+      v-if="pageConfig.isNeedPage"
+      v-bind="pageConfig"
+      @update:pageSize="sizeChange"
+      @update:currentPage="currentChange"
   >
   </el-pagination>
 </template>

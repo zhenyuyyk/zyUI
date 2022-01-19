@@ -1,8 +1,9 @@
 <script setup>
 import {computed, ref} from "vue";
-import {tableDefault, tableColumnDefault} from "/utils/default.js";
+import {tableColumnDefault, tableDefault} from "/utils/default.js";
 import {getType} from "/utils/utils.js";
 import TableColumn from "./tableColumn.vue";
+import _ from "lodash";
 
 const props = defineProps({
   tableConfig: {
@@ -36,39 +37,53 @@ const tableEvent = computed(() => {
   return data;
 });
 
-const column = computed(() => {
-  let data = [];
-  props.column.forEach((item) => {
-    data.push({
-      ...tableColumnDefault,
-      ...item,
-    });
-  });
-  return data;
-});
-
 const elTables = ref(null);
 
 defineExpose({
   elTables
 });
 
-const btnsFun = (btns, index, row) => {
-  let funs = {};
-  for (let i in btns) {
-    if (getType(btns[i]) === 'function') {
-      funs[i] = () => {
-        btns[i](index, row);
-      };
+const customColumn = _.cloneDeep(props.column).filter((row) => {
+  return row.custom;
+});
+
+const customHeader = _.cloneDeep(props.column).filter((row) => {
+  return row.custom;
+}).map((row) => {
+  row.prop = row.prop + "Header";
+  return row;
+});
+
+const column = computed(() => {
+  let data = _.cloneDeep(props.column);
+  data = setColumn(data);
+  return data;
+});
+
+const setColumn = (data) => {
+  for (let i = 0; i < data.length; i++) {
+    data[i] = {
+      ...tableColumnDefault,
+      ...data[i],
+    };
+    if (data[i].children) {
+      data[i].children = setColumn(data[i].children);
     }
   }
-  return funs;
+  return data;
 };
 </script>
 
 <template>
   <el-table ref="elTables" class="zy_base_table" :data="props.data" v-bind="tableConfig" v-on="tableEvent">
-    <TableColumn :column="column"/>
+    <TableColumn :column="column">
+      <template v-for="item in customHeader" v-slot:[item.prop]>
+        <slot :name="item.prop"></slot>
+      </template>
+      <template v-for="item in customColumn" v-slot:[item.prop]>
+        <slot :name="item.prop"></slot>
+      </template>
+    </TableColumn>
   </el-table>
 </template>
 

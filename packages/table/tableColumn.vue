@@ -1,6 +1,4 @@
 <script setup>
-import {computed, ref} from "vue";
-import {tableDefault, tableColumnDefault} from "/utils/default.js";
 import {getType} from "/utils/utils.js";
 import TableColumn from "./tableColumn.vue";
 
@@ -11,33 +9,6 @@ const props = defineProps({
   }
 });
 
-const tableConfig = computed(() => {
-  return {
-    ...tableDefault,
-    ...props.tableConfig
-  };
-});
-
-const tableEvent = computed(() => {
-  let data = {};
-  let config = props.tableConfig;
-  for (let i in config) {
-    getType(config[i]) === "function" ?
-        data[i] = config[i] : "";
-  }
-  return data;
-});
-
-const column = computed(() => {
-  let data = [];
-  props.column.forEach((item) => {
-    data.push({
-      ...tableColumnDefault,
-      ...item,
-    });
-  });
-  return data;
-});
 
 const btnsFun = (btns, index, row) => {
   let funs = {};
@@ -63,19 +34,20 @@ const bindObj = (obj) => {
 </script>
 
 <template>
-  <el-table-column v-for="item in column" v-bind="bindObj(item)">
+  <el-table-column v-for="item in props.column" v-bind="bindObj(item)">
     <template #header v-if="item.customHeader">
       <slot :name="item.prop+'Header'"></slot>
     </template>
     <template #default="scope" v-if="item.custom">
-      <slot :name="item.prop"></slot>
+      <slot :name="item.prop" :row="scope.row"></slot>
     </template>
     <template #default="scope" v-if="item.prop==='operate'">
       <el-button v-for="btns in item.btns" v-bind="btns"
                  v-on="btnsFun(btns, scope.$index, scope.row)">{{ btns.label }}
       </el-button>
     </template>
-    <TableColumn v-if="item.children" :column="item.children"/>
+    <!--暂不支持-->
+    <!--<TableColumn v-if="item.children" :column="item.children"></TableColumn>-->
   </el-table-column>
 </template>
 

@@ -23,3 +23,15 @@ export const tableColumnDefault = {
     reserveSelection: false,
     filterMultiple: true
 };
+
+export const pageDefault = {
+    isNeedPage: true,
+    small: false,
+    background: false,
+    pageSize: 15,
+    pagerCount: 7,
+    currentPage: 1,
+    layout: 'total, sizes, prev, pager, next, jumper',
+    pageSizes: [15, 30, 50, 100],
+    disabled: false
+};
