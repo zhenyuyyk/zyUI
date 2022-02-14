@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref} from "vue";
-import {tableColumnDefault, tableDefault} from "/utils/default.js";
-import {getType} from "/utils/utils.js";
+import {tableColumnDefault, tableDefault} from "/packages/utils/default.js";
+import {getType} from "/packages/utils/utils.js";
 import TableColumn from "./tableColumn.vue";
 import _ from "lodash";
 
@@ -80,8 +80,8 @@ const setColumn = (data) => {
       <template v-for="item in customHeader" v-slot:[item.prop]>
         <slot :name="item.prop"></slot>
       </template>
-      <template v-for="item in customColumn" v-slot:[item.prop]>
-        <slot :name="item.prop"></slot>
+      <template v-for="item in customColumn" v-slot:[item.prop]="scope">
+        <slot :name="item.prop" :scope="scope.scope"></slot>
       </template>
     </TableColumn>
   </el-table>

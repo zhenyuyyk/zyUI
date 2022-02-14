@@ -1,13 +1,20 @@
 export const data = {
-  "key": "v-7df20a7e",
-  "path": "/%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/Checkout%20%E5%A4%9A%E9%80%89%E6%A1%86.html",
-  "title": "多选框",
+  "key": "v-27e91a96",
+  "path": "/%E8%A1%A8%E6%A0%BC%E7%BB%84%E4%BB%B6/%E5%B0%81%E8%A3%85%E8%A1%A8%E6%A0%BC.html",
+  "title": "表格",
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
-  "headers": [],
+  "headers": [
+    {
+      "level": 2,
+      "title": "基础表格",
+      "slug": "基础表格",
+      "children": []
+    }
+  ],
   "git": {
-    "updatedTime": 1641890148000,
+    "updatedTime": 1642558483000,
     "contributors": [
       {
         "name": "zy",
@@ -16,7 +23,7 @@ export const data = {
       }
     ]
   },
-  "filePathRelative": "基础组件/Checkout 多选框.md"
+  "filePathRelative": "表格组件/封装表格.md"
 }
 
 if (import.meta.webpackHot) {

@@ -1,5 +1,5 @@
 <script setup>
-import {pageDefault} from "/utils/default.js";
+import {pageDefault} from "/packages/utils/default.js";
 import {reactive, computed, ref} from "vue";
 
 const props = defineProps({

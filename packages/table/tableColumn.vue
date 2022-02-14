@@ -1,6 +1,11 @@
+<script>
+export default {
+  name: "tableColumn",
+};
+</script>
 <script setup>
-import {getType} from "/utils/utils.js";
-import TableColumn from "./tableColumn.vue";
+import {getType} from "/packages/utils/utils.js";
+import tableColumn from "./tableColumn.vue";
 
 const props = defineProps({
   column: {
@@ -39,7 +44,7 @@ const bindObj = (obj) => {
       <slot :name="item.prop+'Header'"></slot>
     </template>
     <template #default="scope" v-if="item.custom">
-      <slot :name="item.prop" :row="scope.row"></slot>
+      <slot :name="item.prop" :scope="scope.row"></slot>
     </template>
     <template #default="scope" v-if="item.prop==='operate'">
       <el-button v-for="btns in item.btns" v-bind="btns"
@@ -47,7 +52,7 @@ const bindObj = (obj) => {
       </el-button>
     </template>
     <!--暂不支持-->
-    <!--<TableColumn v-if="item.children" :column="item.children"></TableColumn>-->
+    <!--<tableColumn v-if="item.children" :column="item.children"></tableColumn>-->
   </el-table-column>
 </template>
 

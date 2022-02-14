@@ -1,22 +1,16 @@
 export const data = {
-  "key": "v-7df20a7e",
-  "path": "/%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/Checkout%20%E5%A4%9A%E9%80%89%E6%A1%86.html",
-  "title": "多选框",
+  "key": "v-1f20d158",
+  "path": "/%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B6/%E8%A1%A8%E5%8D%95.html",
+  "title": "基础表单",
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
   "headers": [],
   "git": {
-    "updatedTime": 1641890148000,
-    "contributors": [
-      {
-        "name": "zy",
-        "email": "zhangzhenyu@djcps.com",
-        "commits": 1
-      }
-    ]
+    "updatedTime": null,
+    "contributors": []
   },
-  "filePathRelative": "基础组件/Checkout 多选框.md"
+  "filePathRelative": "表单组件/表单.md"
 }
 
 if (import.meta.webpackHot) {

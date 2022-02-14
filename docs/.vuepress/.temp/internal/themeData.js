@@ -1,5 +1,5 @@
 export const themeData = {
-  "logo": "https://vuejs.org/images/logo.png",
+  "logo": "",
   "home": "README.md",
   "sidebar": [
     {
@@ -12,6 +12,15 @@ export const themeData = {
         {
           "text": "Checkout 多选框",
           "link": "/基础组件/Checkout 多选框.md"
+        }
+      ]
+    },
+    {
+      "text": "表单封装",
+      "children": [
+        {
+          "text": "表单",
+          "link": "/表单组件/表单.md"
         }
       ]
     }

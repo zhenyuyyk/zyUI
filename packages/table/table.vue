@@ -2,7 +2,7 @@
 import {ref, reactive, onMounted} from "vue";
 import Page from "./pagination.vue";
 import BaseTable from "./baseTable.vue";
-import {tableDefault} from "../../utils/default";
+import {tableDefault} from "../utils/default";
 import _ from "lodash";
 
 const props = defineProps({
@@ -64,8 +64,8 @@ const pageChange=(pages)=>{
       <template v-for="item in customHeader" v-slot:[item.prop]>
         <slot :name="item.prop"></slot>
       </template>
-      <template v-for="item in customColumn" v-slot:[item.prop]>
-        <slot :name="item.prop"></slot>
+      <template v-for="item in customColumn" v-slot:[item.prop]="scope">
+        <slot :name="item.prop" :row="scope.scope"></slot>
       </template>
     </BaseTable>
   </div>
