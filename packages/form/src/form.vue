@@ -1,5 +1,7 @@
-
 <script setup>
+import {reactive} from "vue";
+import {formConfigDefault} from "../../utils/default.js";
+
 const props = defineProps({
   formData: {
     type: Object,
@@ -7,12 +9,17 @@ const props = defineProps({
   },
   formConfig: {
     type: Object,
-    default: {}
+    default: formConfigDefault
   },
   formItemConfig: {
     type: Array,
     default: []
   }
+});
+
+const formConfig = reactive({
+  ...props.formConfig,
+  ...formConfigDefault
 });
 
 </script>
@@ -42,6 +49,11 @@ const props = defineProps({
       <div v-if="item.type==='custom'">
         <slot :name="item.prop"></slot>
       </div>
+    </el-form-item>
+    <el-form-item v-if="formConfig.btnShow">
+      <el-button v-for="item in formConfig.btns" v-bind="item.attr" @click="item.clickFun">
+        {{ item.label }}
+      </el-button>
     </el-form-item>
   </el-form>
 </template>

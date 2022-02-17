@@ -3,11 +3,12 @@ import App from './App.vue';
 
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+import "./public/index.css"
 
 import zyCheckoutGroup from "./checkbox/checkboxGroup.vue";
 import zyCheckbox from "./checkbox/checkbox.vue";
 import zyTable from "./table/table.vue";
-import zyForm from "./form/form.vue";
+import zyForm from "./form/src/form.vue";
 
 const app = createApp(App);
 

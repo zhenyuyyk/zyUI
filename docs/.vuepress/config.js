@@ -13,7 +13,7 @@ module.exports = {
         }
     ]],
     // 加入的额外标签
-    head: [['script', {type: 'module', src: app}]],
+    // head: [['script', {type: 'module', src: "../../packages/index.js"}]],
     themeConfig: {
         logo: '',
         home: 'README.md',

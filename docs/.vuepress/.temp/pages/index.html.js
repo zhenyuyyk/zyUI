@@ -5,18 +5,7 @@ export const data = {
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
-  "headers": [],
-  "git": {
-    "updatedTime": 1641890148000,
-    "contributors": [
-      {
-        "name": "zy",
-        "email": "zhangzhenyu@djcps.com",
-        "commits": 1
-      }
-    ]
-  },
-  "filePathRelative": "README.md"
+  "headers": []
 }
 
 if (import.meta.webpackHot) {

@@ -344,6 +344,7 @@ const formItemConfig = [
     <zy-form style="width:500px;" :formData="formData" :formConfig="formConfig" :formItemConfig="formItemConfig">
       <template #zidingyi>
         自定义
+        <p>123</p>
       </template>
     </zy-form>
     <zy-checkout-group v-model="checked1" :config="config"/>

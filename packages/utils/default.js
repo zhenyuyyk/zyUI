@@ -35,3 +35,7 @@ export const pageDefault = {
     pageSizes: [15, 30, 50, 100],
     disabled: false
 };
+
+export const formConfigDefault = {
+    btnShow: true,
+};

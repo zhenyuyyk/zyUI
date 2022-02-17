@@ -1,97 +1,7 @@
-<template>
-  <zy-form :formData="formData" :formConfig="formConfig" :formItemConfig="formItemConfig"/>
-</template>
-
 <script setup>
+import {ElMessage} from 'element-plus';
 import {reactive} from 'vue';
-
-
-const cascaderOptions = [
-  {
-    value: 'guide',
-    label: 'Guide',
-    children: [
-      {
-        value: 'disciplines',
-        label: 'Disciplines',
-        children: [
-          {
-            value: 'consistency',
-            label: 'Consistency',
-          },
-        ],
-      },
-      {
-        value: 'navigation',
-        label: 'Navigation',
-        children: [
-          {
-            value: 'side nav',
-            label: 'Side Navigation',
-          },
-          {
-            value: 'top nav',
-            label: 'Top Navigation',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'component',
-    label: 'Component',
-    children: [
-      {
-        value: 'basic',
-        label: 'Basic',
-        children: [
-          {
-            value: 'layout',
-            label: 'Layout',
-          },
-          {
-            value: 'color',
-            label: 'Color',
-          },
-          {
-            value: 'typography',
-            label: 'Typography',
-          },
-          {
-            value: 'icon',
-            label: 'Icon',
-          },
-          {
-            value: 'button',
-            label: 'Button',
-          },
-        ],
-      },
-    ],
-  },
-];
-const checkboxOptions = [
-  {
-    label: "Option A",
-    value: "A"
-  },
-  {
-    label: "Option B",
-    value: "B"
-  },
-  {
-    label: "Option C",
-    value: "C"
-  },
-  {
-    label: "Option D",
-    value: "D"
-  },
-  {
-    label: "Option E",
-    value: "E"
-  }
-];
+import {cascaderOptions, checkboxOptions} from "../../../packages/utils/options.js";
 
 const formData = reactive({
   name: "",
@@ -105,15 +15,42 @@ const formData = reactive({
   timePicker: "",
   timeSelect: "",
   date: "",
+  zidingyi: ""
 });
 const formConfig = {
   labelWidth: "100px",
+  // inline:true,
+  btnShow: true,
+  btns: [
+    {
+      label: "确认",
+      clickFun: () => {
+        subClickFun();
+      },
+      attr: {
+        type: "primary",
+        loading:true
+      }
+    },
+    {
+      label: "取消",
+      clickFun: () => {
+      },
+    },
+  ]
 };
 const formItemConfig = [
   {
     label: "姓名",
     prop: "name",
     type: "input",
+    rules: [
+      {
+        required: true,
+        message: '请输入姓名',
+        trigger: 'blur',
+      }
+    ],
     attr: {
       maxLength: 5,
       placeholder: "请输入名称",
@@ -139,11 +76,17 @@ const formItemConfig = [
         value: 3
       },
     ],
+    attr: {
+      // disabled: true
+    }
   },
   {
     label: "数字",
     prop: "num",
     type: "number",
+    attr: {
+      // disabled: true
+    }
   },
   {
     label: "评分",
@@ -194,6 +137,9 @@ const formItemConfig = [
     label: "时间选择",
     prop: "timePicker",
     type: "timePicker",
+    attr: {
+      placeholder: "请选择时间吧"
+    }
   },
   {
     label: "时间select",
@@ -215,8 +161,29 @@ const formItemConfig = [
       placeholder: "请选择时间吧"
     }
   },
+  {
+    label: "自定义",
+    prop: "zidingyi",
+    type: "custom",
+  },
 ];
+
+const subClickFun = () => {
+  ElMessage({
+    message: '提交成功',
+    type: 'success',
+  });
+};
 </script>
+
+<template>
+  <zy-form :formData="formData" :formConfig="formConfig" :formItemConfig="formItemConfig">
+    <template #zidingyi>
+      自定义
+      <p>123456</p>
+    </template>
+  </zy-form>
+</template>
 
 <style>
 

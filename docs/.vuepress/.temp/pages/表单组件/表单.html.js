@@ -5,12 +5,26 @@ export const data = {
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
-  "headers": [],
-  "git": {
-    "updatedTime": null,
-    "contributors": []
-  },
-  "filePathRelative": "表单组件/表单.md"
+  "headers": [
+    {
+      "level": 2,
+      "title": "formData",
+      "slug": "formdata",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "formConfig",
+      "slug": "formconfig",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "formItemConfig",
+      "slug": "formitemconfig",
+      "children": []
+    }
+  ]
 }
 
 if (import.meta.webpackHot) {

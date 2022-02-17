@@ -1,7 +1,12 @@
 {
   "hash": "ffeeea80",
-  "browserHash": "d92ad59f",
+  "browserHash": "e8860a0e",
   "optimized": {
+    "element-plus": {
+      "file": "D:/myProject/zyAdmin/docs/.vuepress/.cache/element-plus.js",
+      "src": "D:/myProject/zyAdmin/node_modules/element-plus/es/index.mjs",
+      "needsInterop": false
+    },
     "vue": {
       "file": "D:/myProject/zyAdmin/docs/.vuepress/.cache/vue.js",
       "src": "D:/myProject/zyAdmin/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
