@@ -107,18 +107,14 @@ const formData = reactive({
   date: "",
 });
 const formConfig = {
-  labelWidth: "100px"
+  labelWidth: "100px",
+  contentWidth:"400px",
 };
 const formItemConfig = [
   {
     label: "姓名",
     prop: "name",
     type: "input",
-    attr: {
-      maxLength: 5,
-      placeholder: "请输入名称",
-      clearable: true,
-    }
   },
   {
     label: "性别",

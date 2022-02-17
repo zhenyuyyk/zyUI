@@ -1,6 +1,13 @@
 <script setup>
 import {reactive, ref} from 'vue';
 
+const validatePass = (rule, value, callback) => {
+  if (value.length > 5) {
+    callback(new Error('超出5位数'));
+  } else {
+    callback();
+  }
+};
 const formData = reactive({
   name: "",
   sex: "",
@@ -38,10 +45,8 @@ const formItemConfig = [
         trigger: 'blur',
       },
       {
-        min: 3,
-        max: 5,
-        message: '请输入3-5个字符',
-        trigger: 'blur',
+        validator: validatePass,
+        trigger: 'blur'
       }
     ],
   },
@@ -70,7 +75,7 @@ const formItemConfig = [
         trigger: 'change',
       }
     ],
-  }
+  },
 ];
 
 const zyFormRef = ref(null);

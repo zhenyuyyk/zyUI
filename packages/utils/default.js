@@ -37,5 +37,6 @@ export const pageDefault = {
 };
 
 export const formConfigDefault = {
-    btnShow: true,
+    btnShow: false,
+    contentWidth: "auto"
 };

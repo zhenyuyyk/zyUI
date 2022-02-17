@@ -16,13 +16,27 @@ export const data = {
       "level": 2,
       "title": "formConfig",
       "slug": "formconfig",
-      "children": []
+      "children": [
+        {
+          "level": 3,
+          "title": "btns",
+          "slug": "btns",
+          "children": []
+        }
+      ]
     },
     {
       "level": 2,
       "title": "formItemConfig",
       "slug": "formitemconfig",
-      "children": []
+      "children": [
+        {
+          "level": 3,
+          "title": "attr",
+          "slug": "attr",
+          "children": []
+        }
+      ]
     }
   ]
 }
